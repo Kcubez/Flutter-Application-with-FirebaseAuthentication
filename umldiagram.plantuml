@@ -1,0 +1,150 @@
+@startuml UML
+set namespaceSeparator ::
+
+class "authentication_flutter_firebase_crud_by_kkk::app.dart::FirebaseCrud" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "authentication_flutter_firebase_crud_by_kkk::app.dart::FirebaseCrud"
+
+class "authentication_flutter_firebase_crud_by_kkk::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions macos
+  {static} +FirebaseOptions currentPlatform
+}
+
+"authentication_flutter_firebase_crud_by_kkk::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "authentication_flutter_firebase_crud_by_kkk::models::auth.dart::UserAuth" {
+  {static} +UserModel user
+  +dynamic isUserLogedIn()
+  +dynamic saveUserAuth()
+  {static} +dynamic getUserAuth()
+  {static} +dynamic clearUserAuth()
+}
+
+"authentication_flutter_firebase_crud_by_kkk::models::auth.dart::UserAuth" o-- "authentication_flutter_firebase_crud_by_kkk::models::auth.dart::UserModel"
+
+class "authentication_flutter_firebase_crud_by_kkk::models::auth.dart::UserModel" {
+  +String? userEmail
+  +String? userId
+  +Map<String, String> toJson()
+}
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::login_screen.dart::LoginScreen" {
+  +State<LoginScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::login_screen.dart::LoginScreen"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::login_screen.dart::_LoginScreenState" {
+  -bool _isLoginInProgress
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _emailController
+  -TextEditingController _passwordController
+  -bool _isObscure
+  +Widget build()
+  +dynamic loginUser()
+  +void showToastMessage()
+}
+
+"authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::login_screen.dart::_LoginScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::login_screen.dart::_LoginScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::login_screen.dart::_LoginScreenState"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::registration_screen.dart::RegistrationScreen" {
+  +State<RegistrationScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::registration_screen.dart::RegistrationScreen"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::registration_screen.dart::_RegistrationScreenState" {
+  -bool _isCreateAccountInProgress
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _nameController
+  -TextEditingController _emailController
+  -TextEditingController _passwordController
+  -TextEditingController _confirmPasswordController
+  -bool _isObscure
+  +void initState()
+  +void dispose()
+  +Widget build()
+  +dynamic createUser()
+  +void showToastMessage()
+}
+
+"authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::registration_screen.dart::_RegistrationScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::registration_screen.dart::_RegistrationScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::auth_screens::registration_screen.dart::_RegistrationScreenState"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::splash_screen.dart::SplashScreen" {
+  +State<SplashScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::splash_screen.dart::SplashScreen"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::splash_screen.dart::_SplashScreenState" {
+  +void initState()
+  +dynamic screenNavigate()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::splash_screen.dart::_SplashScreenState"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::MyApp"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::TaskScreen" {
+  +State<TaskScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::TaskScreen"
+
+class "authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::_TaskScreenState" {
+  -GlobalKey<FormState> _formKey
+  -GlobalKey<FormState> _formKeyForUpdate
+  -TextEditingController _productController
+  -TextEditingController _priceController
+  +FirebaseAuth firebaseAuth
+  +FirebaseFirestore firestore
+  +void initState()
+  +void dispose()
+  +Widget build()
+  +dynamic addNewProductShowModalBottomSheet()
+  +dynamic saveProduct()
+  +dynamic updateProductShowModalBottomSheet()
+  +dynamic updateProduct()
+}
+
+"authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::_TaskScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::_TaskScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::_TaskScreenState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::_TaskScreenState" o-- "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+"flutter::src::widgets::framework.dart::State" <|-- "authentication_flutter_firebase_crud_by_kkk::screens::task_screen::task_list.dart::_TaskScreenState"
+
+class "authentication_flutter_firebase_crud_by_kkk::widgets::password_text_form_field.dart::PasswordTextFormField" {
+  +String? hintText
+  +String labelText
+  +String? Function(String?) validator
+  +TextEditingController passwordEditingController
+  +State<PasswordTextFormField> createState()
+}
+
+"authentication_flutter_firebase_crud_by_kkk::widgets::password_text_form_field.dart::PasswordTextFormField" o-- "null::String Function(String)"
+"authentication_flutter_firebase_crud_by_kkk::widgets::password_text_form_field.dart::PasswordTextFormField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "authentication_flutter_firebase_crud_by_kkk::widgets::password_text_form_field.dart::PasswordTextFormField"
+
+class "authentication_flutter_firebase_crud_by_kkk::widgets::password_text_form_field.dart::_PasswordTextFormFieldState" {
+  -bool _isPasswordHide
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "authentication_flutter_firebase_crud_by_kkk::widgets::password_text_form_field.dart::_PasswordTextFormFieldState"
+
+
+@enduml
